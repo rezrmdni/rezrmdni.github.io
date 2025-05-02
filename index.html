@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Portofolio</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="script.js"></script>
+    <script src="https://kit.fontawesome.com/3a16dfe103.js" crossorigin="anonymous"></script>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>OZVGEN21</h1>
+            <div class="menu-toggle" onclick=showSidebar()>☰</div>
+        </header>
+<!-- Perbaiki script agar showSidebar() tidak muncul ketika closeSidebar() dibuka -->
+        <div class="overlay" id="overlay" onclick="closeSidebar()"></div>
+
+        <nav class="sidebar" id="sidebar">
+            <div class="close-toggle" onclick="closeSidebar()">
+                <i class="fa-solid fa-xmark"></i>
+            </div>
+            <ul>
+                <li><a href=".profile"><i class="fa-solid fa-house"></i> Home</a></li>
+                <li><a href=".projects"><i class="fa-solid fa-user"></i> About</a></li>
+                <li><a href="#"><i class="fa-solid fa-file"></i> Portfolio</a></li>
+                <li><a href="footer-content"><i class="fa-solid fa-bell"></i> Contact</a></li>
+            </ul>
+        </nav>
+        
+        <main>
+            <section class="profile">
+                <div class="image">
+                    <img src="pp.jpg" alt="Profile Picture">
+                </div> 
+                <div class="text">
+                    <h2>REZA RAMDANI</h2>
+                    <h3>Full Stack Developer</h3>
+                    <p>fullstack developer enthusiast who is currently focused on Web Development. Apart from that, I am also interested in UI/UX design. I love learning new things and am always open to new opportunities.</p>
+                    <div class="buttons">
+                        <a href="" class="btn primary" download="">Download CV</a>
+                        <a href="mailto:rezrmdnii@gmail.com" class="btn">Contact Me</a>
+                    </div>
+                </div>
+            </section>
+        </main>
+
+        <section class="projects">
+            <div class="skills">
+                <h3>Skills</h3>
+                <ul class="skills-list">
+                    <li><i class="fa-brands fa-html5"></i> HTML</li>
+                    <li><i class="fa-brands fa-css3-alt"></i> CSS</li>
+                    <li><i class="fa-brands fa-js"></i> JavaScript</li>
+                    <li><i class="fa-brands fa-golang"></i> Golang</li>
+                    <li><i class="fa-brands fa-figma"></i> Figma</li>
+                </ul>
+            </div>
+            <br>
+            <br>
+            <br>
+            <div class="text2">
+                <h2>github.com/Ozvgen21</h2>
+                <h3>Project</h3>
+                <p>I have several projects in the fields of design and programming. Tap below to see details of the projects I'm working on.</p>
+            </div>
+            <div class="gallery">
+                <div class="gallery-container">
+                    <div class="gallery-item"><img src="image1.jpg" alt="Project Image 1"></div>
+                    <div class="gallery-item"><img src="image2.jpg" alt="Project Image 2"></div>
+                    <div class="gallery-item"><img src="image3.jpg" alt="Project Image 3"></div>
+                    <div class="gallery-item"><img src="image4.jpg" alt="Project Image 4"></div>
+                </div>
+            </div>
+            <div class="buttons2">
+                <a href="" class="btn-scnd">See More</a>
+            </div>
+        </section>
+
+        <div class="notes" id="notes">
+            <p><a href="https://wa.me/628986880140?text=Halo,%20saya%20melihat%20portofolio%20anda%20di%20website!" class="p">I am Reza Ramdani, this project was created by ozvgen21</a></p>
+        </div>
+    </div>
+    <footer>
+        <div class="footer-content">
+            <h3>Contact Me</h3>
+            <p>If you have any questions or want to work together, feel free to reach out!</p>
+            <ul class="socials">
+                <li><a href="https://github.com/Ozvgen21"><i class="fa-brands fa-github"></i></a></li>
+                <li><a href="https://www.linkedin.com/in/Rezrmdnii"><i class="fa-brands fa-linkedin"></i></a></li>
+                <li><a href="https://instagram.com/ozvgen21"><i class="fa-brands fa-instagram"></i></a></li>
+                <li><a href="mailto:rezrmdnii@gmail.com"><i class="fa-solid fa-envelope"></i></a></li>
+            </ul>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2025 Reza Ramdani. All rights reserved.</p>
+        </div>
+    </footer>
+</body>
+</html>
