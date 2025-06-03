@@ -228,12 +228,16 @@ header {
 
 .gallery {
     margin-top: 40px;
-    padding: 40px;
+    padding: 24px 12px;
     background: white;
     border-radius: 10px;
-    box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.1);
+    box-shadow: none; /* Hapus box shadow */
     text-align: center;
-    width: 100%;
+    max-width: 1000px;
+    width: 95%;
+    margin-left: auto;
+    margin-right: auto;
+    box-sizing: border-box;
 }
 
 .gallery h2 {
@@ -264,6 +268,97 @@ header {
     width: 100%;
     height: 100%;
     object-fit: cover;
+}
+
+.images {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 10%;
+    justify-content: center;
+    background: white;
+    padding: 40px;
+    border-radius: 10px;
+    box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.1);
+    text-align: center;
+}
+
+.images .gallery {
+    margin-top: 40px;
+    padding: 24px 12px;
+    background: white;
+    border-radius: 10px;
+    box-shadow: none; /* Hapus box shadow */
+    text-align: center;
+    max-width: 1000px;
+    width: 95%;
+    margin-left: auto;
+    margin-right: auto;
+    box-sizing: border-box;
+}
+
+.images .gallery-container {
+    display: flex;
+        gap: 24px;
+}
+
+.images .gallery-item {
+    position: relative;
+    display: flex;
+    align-items: center;
+    overflow: visible;
+    width: 200px;
+    height: 140px;
+    border-radius: 10px;
+    box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.1);
+    background: #fff;
+    cursor: pointer;
+    transition: width 0.5s;
+}
+
+.images .gallery-item img {
+    width: 200px;
+    height: 140px;
+    border-radius: 10px;
+    object-fit: cover;
+    z-index: 1;
+    flex-shrink: 0;
+    transition: filter 0.4s;
+}
+
+.images .gallery-item .desc {
+    opacity: 0;
+    visibility: hidden;
+    margin-left: 0;
+    width: 0;
+    padding: 0;
+    color: #222;
+    overflow: hidden;
+    transition:
+        opacity 0.4s cubic-bezier(.4,2,.6,1),
+        visibility 0.4s cubic-bezier(.4,2,.6,1),
+        width 0.5s cubic-bezier(.4,2,.6,1),
+        margin-left 0.5s cubic-bezier(.4,2,.6,1),
+        padding 0.4s cubic-bezier(.4,2,.6,1),
+        
+}
+
+.images .gallery-item:hover {
+    width: 380px;
+    box-shadow: 0px 8px 24px rgba(0,0,0,0.15);
+    background: #fafafa;
+}
+
+.images .gallery-item:hover img {
+    filter: brightness(0.95);
+}
+
+.images .gallery-item:hover .desc {
+    opacity: 1;
+    visibility: visible;
+    width: 160px;
+    margin-left: 20px;
+    padding: 16px;
 }
 
 .notes {
@@ -455,3 +550,105 @@ footer {
         height: auto;
     }
 }
+
+.projects .gallery {
+    margin-top: 32px;
+    padding: 24px 12px;
+    background: #fff;
+    border-radius: 10px;
+    box-shadow: 0px 5px 15px rgba(0,0,0,0.10);
+    text-align: center;
+    max-width: 1000px;
+    width: 95%;
+    margin-left: auto;
+    margin-right: auto;
+    box-sizing: border-box;
+}
+
+.projects .gallery-container {
+    display: flex;
+    flex-wrap: wrap;           /* Agar responsif turun ke bawah jika sempit */
+    gap: 24px;
+    justify-content: center;
+    padding-bottom: 10px;
+    width: 100%;
+    overflow-x: auto;          /* Aktifkan horizontal scroll jika item banyak */
+    overflow-y: hidden;
+    scrollbar-width: thin;     /* Firefox */
+}
+
+/* Scrollbar untuk Chrome, Edge, Safari */
+.projects .gallery-container::-webkit-scrollbar {
+    height: 8px;
+}
+.projects .gallery-container::-webkit-scrollbar-thumb {
+    background: #ccc;
+    border-radius: 4px;
+}
+
+.projects .gallery-item {
+    position: relative;
+    display: flex;
+    align-items: center;
+    overflow: visible;
+    width: 200px;
+    height: 140px;
+    border-radius: 10px;
+    box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.1);
+    background: #fff;
+    cursor: pointer;
+    transition: width 0.5s cubic-bezier(.4,2,.6,1), box-shadow 0.4s cubic-bezier(.4,2,.6,1), background 0.4s;
+}
+
+.projects .gallery-item img {
+    width: 200px;
+    height: 140px;
+    border-radius: 10px;
+    object-fit: cover;
+    z-index: 1;
+    flex-shrink: 0;
+    transition: filter 0.4s;
+}
+
+/* Jika ingin menambahkan deskripsi seperti section images, tambahkan struktur HTML dan CSS berikut: */
+/*
+.projects .gallery-item .desc {
+    opacity: 0;
+    visibility: hidden;
+    margin-left: 0;
+    width: 0;
+    padding: 0;
+    background: #fff;
+    color: #222;
+    border-radius: 8px;
+    box-shadow: none;
+    overflow: hidden;
+    white-space: normal;
+    transition:
+        opacity 0.4s cubic-bezier(.4,2,.6,1),
+        visibility 0.4s cubic-bezier(.4,2,.6,1),
+        width 0.5s cubic-bezier(.4,2,.6,1),
+        margin-left 0.5s cubic-bezier(.4,2,.6,1),
+        padding 0.4s cubic-bezier(.4,2,.6,1),
+        box-shadow 0.4s cubic-bezier(.4,2,.6,1);
+}
+
+.projects .gallery-item:hover {
+    width: 380px;
+    box-shadow: 0px 8px 24px rgba(0,0,0,0.15);
+    background: #fafafa;
+}
+
+.projects .gallery-item:hover img {
+    filter: brightness(0.95);
+}
+
+.projects .gallery-item:hover .desc {
+    opacity: 1;
+    visibility: visible;
+    width: 160px;
+    margin-left: 20px;
+    padding: 16px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+}
+*/
