@@ -9,26 +9,26 @@
     <script src="https://kit.fontawesome.com/3a16dfe103.js" crossorigin="anonymous"></script>
 </head>
 <body>
+    <nav class="navbar">
+        <div class="navbar-container">
+            <div class="navbar-brand">IMYOURNOIRX</div>
+            <ul class="navbar-menu">
+                <li><a href="#">Profile</a></li>
+                <li><a href="projects.html">Project</a></li>
+                <li><a href="#sertificate">Sertificate</a></li>
+                <li><a href="contact.html">Contact</a></li>
+            </ul>
+        </div>
+    </nav>
     <div class="container">
         <header>
             <h1>OZVGEN21</h1>
-            <div class="menu-toggle" onclick=showSidebar()>☰</div>
+            <label for="dark-toggle" class="toggle-container" aria-label="Toggle dark mode">
+                <input type="checkbox" id="dark-toggle" aria-checked="false" />
+                <span class="toggle-switch" aria-hidden="true"></span>
+            </label>
         </header>
-<!-- Perbaiki script agar showSidebar() tidak muncul ketika closeSidebar() dibuka -->
-        <div class="overlay" id="overlay" onclick="closeSidebar()"></div>
 
-        <nav class="sidebar" id="sidebar">
-            <div class="close-toggle" onclick="closeSidebar()">
-                <i class="fa-solid fa-xmark"></i>
-            </div>
-            <ul>
-                <li><a href="#"><i class="fa-solid fa-house"></i> Home</a></li>
-                <li><a href="#"><i class="fa-solid fa-user"></i> About</a></li>
-                <li><a href="#"><i class="fa-solid fa-file"></i> Portfolio</a></li>
-                <li><a href="footer-content"><i class="fa-solid fa-bell"></i> Contact</a></li>
-            </ul>
-        </nav>
-        
         <main>
             <section class="profile">
                 <div class="image">
@@ -50,11 +50,12 @@
             <div class="skills">
                 <h3>Skills</h3>
                 <ul class="skills-list">
+                    <li><i class="fa-brands fa-figma"></i> Figma</li>
                     <li><i class="fa-brands fa-html5"></i> HTML</li>
                     <li><i class="fa-brands fa-css3-alt"></i> CSS</li>
                     <li><i class="fa-brands fa-js"></i> JavaScript</li>
                     <li><i class="fa-brands fa-java"></i> Java</li>
-                    <li><i class="fa-brands fa-figma"></i> Figma</li>
+                    <li><i class="fa-solid fa-database"></i> MySQL</li>
                 </ul>
             </div>
             <br>
@@ -74,7 +75,7 @@
                 </div>
             </div>
             <div class="buttons2">
-                <a href="#" class="btn-scnd">See More</a>
+                <a href="projects.html" class="btn-scnd">See More</a>
             </div>
         </section>
         <section class="images">
@@ -82,11 +83,17 @@
             <div class="gallery">
                 <div class="gallery-container">
                     <div class="gallery-item">
-                        <img src="images/sertif bindes.png" alt="Sertificate 1">
+                        <img src="images/sertif bindes.png" alt="Sertificate 1"
+                             class="sertif-img"
+                             data-title="Sertifikat Bina Desa 2023"
+                             data-desc="Sertifikat partisipasi dalam kegiatan Bina Desa tahun 2023.">
                         <div class="desc">Sertifikat Bina Desa 2023</div>
                     </div>
                     <div class="gallery-item">
-                        <img src="images/" alt="Sertificate 2">
+                        <img src="images/" alt="Sertificate 2"
+                             class="sertif-img"
+                             data-title="Judul Sertifikat 2"
+                             data-desc="Deskripsi Sertifikat 2.">
                         <div class="desc">Deskripsi Sertifikat 2</div>
                     </div>
                     <div class="gallery-item">
@@ -104,9 +111,15 @@
                 </div>
             </div>
         </section>
-
-        <div class="notes" id="notes">
-            <p><a href="https://wa.me/628986880140?text=Halo,%20saya%20melihat%20portofolio%20anda%20di%20website!" class="p">I am Reza Ramdani, this project was created by ozvgen21</a></p>
+        <!-- Modal Sertifikat -->
+        <div id="sertif-modal" class="modal" style="display:none;">
+            <div class="modal-content">
+                <span class="close-btn" id="close-modal">&times;</span>
+                <h2 id="modal-title"></h2>
+                <img id="modal-img" src="" alt="Sertificate" style="max-width:100%;height:auto;">
+                <p id="modal-desc"></p>
+                <a id="modal-download" href="#" download class="btn primary" style="margin-top:10px;">Unduh Sertifikat</a>
+            </div>
         </div>
     </div>
     <footer>
@@ -124,5 +137,7 @@
             <p>&copy; 2025 Reza Ramdani. All rights reserved.</p>
         </div>
     </footer>
+    <script src="script.js"></script>
+    <script src="https://kit.fontawesome.com/3a16dfe103.js" crossorigin="anonymous"></script>
 </body>
 </html>

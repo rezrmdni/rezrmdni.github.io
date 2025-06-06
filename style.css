@@ -1,3 +1,129 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap');
+
+:root {
+  --transition-duration: 0.3s;
+  --color-light-bg: #ffffff;
+  --color-light-text: #1f2937;
+  --color-dark-bg: #121212;
+  --color-dark-text: #e0e0e0;
+
+  --toggle-width: 60px;
+  --toggle-height: 30px;
+  --toggle-padding: 4px;
+  --toggle-thumb-size: 22px;
+
+  --sun-color: #fbbf24; /* amber-400 */
+  --moon-color: #7090b6; /* blue-400 */
+}
+
+/* Base resets */
+*, *::before, *::after {
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Inter', sans-serif;
+  font-weight: 400;
+  font-size: 18px;
+  line-height: 1.5;
+  margin: 0;
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: var(--color-light-bg);
+  color: var(--color-light-text);
+  transition: background-color var(--transition-duration) ease, color var(--transition-duration) ease;
+}
+
+body.dark {
+  background-color: #121212;
+  color: #e0e0e0;
+}
+
+.toggle-container {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  user-select: none;
+  margin-right: 0.5rem; /* Tambahkan sedikit jarak dari menu-toggle */
+}
+
+.toggle-label {
+  font-size: 1.125rem;
+  font-weight: 700;
+  cursor: pointer;
+  select-none: true;
+}
+
+/* Hide default checkbox */
+input[type="checkbox"] {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0,0,0,0);
+  border: 0;
+}
+
+/* Custom toggle switch */
+.toggle-switch {
+  position: relative;
+  width: var(--toggle-width);
+  height: var(--toggle-height);
+  background: #e4e7eb;
+  border-radius: var(--toggle-height);
+  cursor: pointer;
+  transition: background-color var(--transition-duration) ease;
+  box-shadow: inset 0 0 5px rgba(0,0,0,0.1);
+  flex-shrink: 0;
+}
+
+body.dark .toggle-switch {
+  background: #374151; /* darker bg for dark mode toggle track */
+  box-shadow: inset 0 0 6px rgba(255 255 255 / 0.15);
+}
+
+/* Toggle thumb */
+.toggle-switch::before {
+  content: "";
+  position: absolute;
+  top: var(--toggle-padding);
+  left: var(--toggle-padding);
+  width: var(--toggle-thumb-size);
+  height: var(--toggle-thumb-size);
+  background: var(--sun-color);
+  border-radius: 50%;
+  transition:
+    left var(--transition-duration) ease,
+    background-color var(--transition-duration) ease;
+  box-shadow: 0 0 8px rgba(251, 191, 36, 0.6);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  /* We will place sun icon as background svg here */
+  background-image: url("data:image/svg+xml,%3Csvg fill='%23fbbf24' xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M12 4.5a1 1 0 1 1 0-2 1 1 0 0 1 0 2zM12 21a1 1 0 1 1 0 2 1 1 0 0 1 0-2zM4.5 12a1 1 0 1 1-2 0 1 1 0 0 1 2 0zM21 12a1 1 0 1 1 2 0 1 1 0 0 1-2 0zM5.636 5.636a1 1 0 1 1-1.414-1.414 1 1 0 0 1 1.414 1.414zM18.364 18.364a1 1 0 1 1-1.414-1.414 1 1 0 0 1 1.414 1.414zM18.364 5.636a1 1 0 1 1-1.414 1.414 1 1 0 0 1 1.414-1.414zM5.636 18.364a1 1 0 1 1-1.414 1.414 1 1 0 0 1 1.414-1.414zM12 7a5 5 0 1 1 0 10A5 5 0 0 1 12 7z'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: 60%;
+}
+
+/* When checked, move the thumb to right and change background to moon */
+input[type="checkbox"]:checked + .toggle-switch::before {
+  left: calc(100% - var(--toggle-padding) - var(--toggle-thumb-size));
+  background-color: var(--moon-color);
+  box-shadow: 0 0 8px rgba(96, 165, 250, 0.6);
+  background-image: url("data:image/svg+xml,%3Csvg fill='%2360a5fa' xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M21.75 15.31a9 9 0 1 1-11.2-11.2 7 7 0 1 0 11.2 11.2z'/%3E%3C/svg%3E");
+}
+
+/* Focus ring for accessibility */
+input[type="checkbox"]:focus + .toggle-switch {
+  outline: 3px solid #3b82f6;
+  outline-offset: 2px;
+}
+
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;700&display=swap');
 
 * {
@@ -23,9 +149,8 @@ body {
 
 header {
     display: flex;
-    justify-content: space-between;
     align-items: center;
-    margin-bottom: 40px;
+    justify-content: space-between;
 }
 
 .menu-toggle {
@@ -377,60 +502,102 @@ header {
     text-decoration: none;
 }
 
+/* Footer style */
 footer {
-    background-color: #333;
-    color: #fff;
-    padding: 20px 0;
-    text-align: center;
-    margin-top: auto;
+    width: 100%;
+    background: #fff;
+    margin-top: 40px;
+    box-shadow: 0 -2px 16px rgba(0,0,0,0.04);
 }
 
 .footer-content {
     max-width: 1200px;
     margin: 0 auto;
-    padding: 20px;
+    padding: 32px 30px 16px 30px;
+    box-sizing: border-box;
+    text-align: center;
 }
 
 .footer-content h3 {
-    margin-bottom: 20px;
-    font-size: 24px;
+    font-size: 22px;
+    margin-bottom: 10px;
+    color: #333;
+    letter-spacing: 1px;
 }
 
 .footer-content p {
-    margin-bottom: 20px;
+    color: #555;
+    margin-bottom: 18px;
     font-size: 16px;
 }
 
 .footer-content .socials {
     list-style: none;
-    padding: 0;
     display: flex;
     justify-content: center;
-    gap: 15px;
-}
-
-.footer-content .socials li {
-    display: inline-block;
+    gap: 18px;
+    padding: 0;
+    margin: 0;
 }
 
 .footer-content .socials li a {
-    color: #fff;
-    font-size: 20px;
-    transition: color 0.3s;
+    color: #333;
+    font-size: 22px;
+    transition: color 0.2s;
 }
 
 .footer-content .socials li a:hover {
-    color: #1da1f2;
+    color: #4364de;
 }
 
 .footer-bottom {
-    background-color: #222;
-    padding: 10px 0;
-    font-size: 14px;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 12px 30px;
+    box-sizing: border-box;
+    text-align: center;
+    color: #888;
+    font-size: 15px;
+    border-top: 1px solid #eee;
+    background: transparent;
 }
 
-.footer-bottom p {
-    margin: 0;
+/* Dark mode for footer */
+body.dark footer {
+    background: #181a20;
+    box-shadow: 0 -2px 16px rgba(0,0,0,0.18);
+}
+
+body.dark .footer-content,
+body.dark .footer-bottom {
+    background: #181a20;
+    color: #e0e0e0;
+}
+
+body.dark .image img {
+    filter: none;
+    transition: none;
+}
+
+body.dark .footer-content h3 {
+    color: #e0e0e0;
+}
+
+body.dark .footer-content p {
+    color: #cccccc;
+}
+
+body.dark .footer-content .socials li a {
+    color: #4364de;
+}
+
+body.dark .footer-content .socials li a:hover {
+    color: #fff;
+}
+
+body.dark .footer-bottom {
+    border-top: 1px solid #23272f;
+    color: #aaa;
 }
 
 .skills {
@@ -466,6 +633,11 @@ footer {
 .skills-list li i {
     font-size: 24px;
     margin-right: 10px;
+}
+
+.skills-list .fa-database {
+  font-size: 1em;
+  vertical-align: middle;
 }
 
 /* Media queries untuk tampilan mobile */
@@ -610,45 +782,261 @@ footer {
     transition: filter 0.4s;
 }
 
-/* Jika ingin menambahkan deskripsi seperti section images, tambahkan struktur HTML dan CSS berikut: */
-/*
-.projects .gallery-item .desc {
-    opacity: 0;
-    visibility: hidden;
-    margin-left: 0;
-    width: 0;
+body.dark h1 {
+    color: #4364de;
+}
+
+body.dark .profile,
+body.dark .projects,
+body.dark .skills,
+body.dark .gallery,
+body.dark .images,
+body.dark .container,
+body.dark .notes {
+    background: #23272f00;
+    color: #e0e0e0;
+}
+
+body.dark .profile .text h2,
+body.dark .projects .text2 h2,
+body.dark .skills h3,
+body.dark .gallery h2,
+body.dark .projects .text2 h3,
+body.dark .profile .text h3 {
+    color: #4364de;
+}
+
+body.dark .profile .text p,
+body.dark .projects .text2 p,
+body.dark .gallery p,
+body.dark .skills-list li,
+body.dark .projects .gallery-item .desc {
+    color: #cccccc;
+}
+
+body.dark .btn,
+body.dark .btn-scnd {
+    background: #23272f87;
+    color: #ffffff;
+    border-color: #4364de;
+}
+
+body.dark .btn.primary,
+body.dark .btn-scnd {
+    background: #4364de;
+    color: #ffffff;
+}
+
+body.dark .gallery-item,
+body.dark .projects .gallery-item,
+body.dark .images .gallery-item {
+    background: #23272f;
+    color: #e0e0e0;
+}
+
+body.dark .gallery-item img,
+body.dark .projects .gallery-item img,
+body.dark .images .gallery-item img {
+    filter: grayscale(10%) brightness(0.85);
+}
+
+body.dark .footer-content,
+body.dark .footer-bottom {
+    background: #181a20;
+    color: #e0e0e0;
+}
+
+body.dark .footer-content .socials li a {
+    color: #4364de;
+}
+
+body.dark .footer-content .socials li a:hover {
+    color: #fff;
+}
+
+body.dark .skills-list li i {
+    color: #4364de;
+}
+
+body.dark .notes {
+    background: #23272f;
+    color: #4364de;
+    border: 1px solid #4364de;
+}
+
+.navbar {
+    width: 100%;
+    background: #fff;
+    box-shadow: 0 2px 12px rgba(0,0,0,0.06);
+    position: sticky;
+    top: 0;
+    z-index: 100;
+}
+
+.navbar-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 30px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    height: 56px;
+}
+
+.navbar-brand {
+    font-weight: 700;
+    font-size: 20px;
+    color: #222;
+    letter-spacing: 1px;
+}
+
+.navbar-menu {
+    list-style: none;
+    display: flex;
+    gap: 28px;
+    margin: 0;
     padding: 0;
+}
+
+.navbar-menu li a {
+    text-decoration: none;
+    color: #222;
+    font-weight: 500;
+    font-size: 16px;
+    transition: color 0.2s;
+    padding: 6px 0;
+    position: relative;
+}
+
+.navbar-menu li a::after {
+    content: '';
+    display: block;
+    width: 0;
+    height: 2px;
+    background: #4364de;
+    transition: width 0.2s;
+    position: absolute;
+    left: 0;
+    bottom: -2px;
+}
+
+.navbar-menu li a:hover,
+.navbar-menu li a:focus {
+    color: #4364de;
+}
+
+.navbar-menu li a:hover::after,
+.navbar-menu li a:focus::after {
+    width: 100%;
+}
+
+/* Dark mode navbar */
+body.dark .navbar {
+    background: #181a20;
+    box-shadow: 0 2px 12px rgba(0,0,0,0.18);
+}
+
+body.dark .navbar-brand {
+    color: #3b82f6;
+}
+
+body.dark .navbar-menu li a {
+    color: #e0e0e0;
+}
+
+body.dark .navbar-menu li a:hover,
+body.dark .navbar-menu li a:focus {
+    color: #fbbf24;
+}
+
+body.dark .navbar-menu li a::after {
+    background: #fbbf24;
+}
+
+/* Tambahkan di style.css */
+/* Modal Overlay */
+.modal {
+    position: fixed;
+    z-index: 1000;
+    left: 0; top: 0;
+    width: 100vw; height: 100vh;
+    background: rgba(30, 32, 38, 0.75);
+    display: none;
+    align-items: center;
+    justify-content: center;
+    transition: background 0.3s;
+}
+
+/* Modal Content */
+.modal-content {
     background: #fff;
     color: #222;
+    border-radius: 16px;
+    box-shadow: 0 8px 32px rgba(0,0,0,0.25);
+    padding: 32px 24px 24px 24px;
+    max-width: 380px;
+    width: 90%;
+    position: relative;
+    text-align: center;
+    animation: modalFadeIn 0.3s;
+}
+
+@keyframes modalFadeIn {
+    from { transform: translateY(40px) scale(0.95); opacity: 0; }
+    to   { transform: translateY(0) scale(1); opacity: 1; }
+}
+
+/* Close Button */
+.close-btn {
+    position: absolute;
+    top: 18px;
+    right: 22px;
+    font-size: 1.7rem;
+    color: #888;
+    cursor: pointer;
+    transition: color 0.2s;
+}
+.close-btn:hover {
+    color: #e74c3c;
+}
+
+/* Modal Image */
+#modal-img {
+    margin: 18px 0 12px 0;
+    border-radius: 10px;
+    box-shadow: 0 2px 12px rgba(0,0,0,0.08);
+    max-width: 100%;
+    height: auto;
+}
+
+/* Modal Title */
+#modal-title {
+    font-size: 1.3rem;
+    font-weight: 600;
+    margin-bottom: 8px;
+    color: #222;
+}
+
+/* Modal Description */
+#modal-desc {
+    font-size: 1rem;
+    color: #444;
+    margin-bottom: 18px;
+}
+
+/* Download Button */
+#modal-download.btn.primary {
+    display: inline-block;
+    background: #007bff;
+    color: #fff !important;
+    padding: 10px 22px;
     border-radius: 8px;
-    box-shadow: none;
-    overflow: hidden;
-    white-space: normal;
-    transition:
-        opacity 0.4s cubic-bezier(.4,2,.6,1),
-        visibility 0.4s cubic-bezier(.4,2,.6,1),
-        width 0.5s cubic-bezier(.4,2,.6,1),
-        margin-left 0.5s cubic-bezier(.4,2,.6,1),
-        padding 0.4s cubic-bezier(.4,2,.6,1),
-        box-shadow 0.4s cubic-bezier(.4,2,.6,1);
+    font-weight: 500;
+    text-decoration: none;
+    margin-top: 10px;
+    transition: background 0.2s;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.07);
 }
-
-.projects .gallery-item:hover {
-    width: 380px;
-    box-shadow: 0px 8px 24px rgba(0,0,0,0.15);
-    background: #fafafa;
+#modal-download.btn.primary:hover {
+    background: #0056b3;
 }
-
-.projects .gallery-item:hover img {
-    filter: brightness(0.95);
-}
-
-.projects .gallery-item:hover .desc {
-    opacity: 1;
-    visibility: visible;
-    width: 160px;
-    margin-left: 20px;
-    padding: 16px;
-    box-shadow: 0 2px 8px rgba(0,0,0,0.08);
-}
-*/
