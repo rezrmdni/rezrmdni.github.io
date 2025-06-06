@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Dark Mode Toggle with Sun & Moon</title>
+  <style>
+  @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap');
+
+    :root {
+      --transition-duration: 0.3s;
+      --color-light-bg: #ffffff;
+      --color-light-text: #1f2937;
+      --color-dark-bg: #121212;
+      --color-dark-text: #e0e0e0;
+
+      --toggle-width: 60px;
+      --toggle-height: 30px;
+      --toggle-padding: 4px;
+      --toggle-thumb-size: 22px;
+
+      --sun-color: #fbbf24; /* amber-400 */
+      --moon-color: #7090b6; /* blue-400 */
+    }
+
+    /* Base resets */
+    *, *::before, *::after {
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      font-weight: 400;
+      font-size: 18px;
+      line-height: 1.5;
+      margin: 0;
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background-color: var(--color-light-bg);
+      color: var(--color-light-text);
+      transition: background-color var(--transition-duration) ease, color var(--transition-duration) ease;
+    }
+
+    body.dark {
+      background-color: var(--color-dark-bg);
+      color: var(--color-dark-text);
+    }
+
+    .toggle-container {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      user-select: none;
+    }
+
+    .toggle-label {
+      font-size: 1.125rem;
+      font-weight: 700;
+      cursor: pointer;
+      select-none: true;
+    }
+
+    /* Hide default checkbox */
+    input[type="checkbox"] {
+      position: absolute;
+      width: 1px;
+      height: 1px;
+      padding: 0;
+      margin: -1px;
+      overflow: hidden;
+      clip: rect(0,0,0,0);
+      border: 0;
+    }
+
+    /* Custom toggle switch */
+    .toggle-switch {
+      position: relative;
+      width: var(--toggle-width);
+      height: var(--toggle-height);
+      background: #e4e7eb;
+      border-radius: var(--toggle-height);
+      cursor: pointer;
+      transition: background-color var(--transition-duration) ease;
+      box-shadow: inset 0 0 5px rgba(0,0,0,0.1);
+      flex-shrink: 0;
+    }
+
+    body.dark .toggle-switch {
+      background: #374151; /* darker bg for dark mode toggle track */
+      box-shadow: inset 0 0 6px rgba(255 255 255 / 0.15);
+    }
+
+    /* Toggle thumb */
+    .toggle-switch::before {
+      content: "";
+      position: absolute;
+      top: var(--toggle-padding);
+      left: var(--toggle-padding);
+      width: var(--toggle-thumb-size);
+      height: var(--toggle-thumb-size);
+      background: var(--sun-color);
+      border-radius: 50%;
+      transition:
+        left var(--transition-duration) ease,
+        background-color var(--transition-duration) ease;
+      box-shadow: 0 0 8px rgba(251, 191, 36, 0.6);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      /* We will place sun icon as background svg here */
+      background-image: url("data:image/svg+xml,%3Csvg fill='%23fbbf24' xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M12 4.5a1 1 0 1 1 0-2 1 1 0 0 1 0 2zM12 21a1 1 0 1 1 0 2 1 1 0 0 1 0-2zM4.5 12a1 1 0 1 1-2 0 1 1 0 0 1 2 0zM21 12a1 1 0 1 1 2 0 1 1 0 0 1-2 0zM5.636 5.636a1 1 0 1 1-1.414-1.414 1 1 0 0 1 1.414 1.414zM18.364 18.364a1 1 0 1 1-1.414-1.414 1 1 0 0 1 1.414 1.414zM18.364 5.636a1 1 0 1 1-1.414 1.414 1 1 0 0 1 1.414-1.414zM5.636 18.364a1 1 0 1 1-1.414 1.414 1 1 0 0 1 1.414-1.414zM12 7a5 5 0 1 1 0 10A5 5 0 0 1 12 7z'/%3E%3C/svg%3E");
+      background-repeat: no-repeat;
+      background-position: center;
+      background-size: 60%;
+    }
+
+    /* When checked, move the thumb to right and change background to moon */
+    input[type="checkbox"]:checked + .toggle-switch::before {
+      left: calc(100% - var(--toggle-padding) - var(--toggle-thumb-size));
+      background-color: var(--moon-color);
+      box-shadow: 0 0 8px rgba(96, 165, 250, 0.6);
+      background-image: url("data:image/svg+xml,%3Csvg fill='%2360a5fa' xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M21.75 15.31a9 9 0 1 1-11.2-11.2 7 7 0 1 0 11.2 11.2z'/%3E%3C/svg%3E");
+    }
+
+    /* Focus ring for accessibility */
+    input[type="checkbox"]:focus + .toggle-switch {
+      outline: 3px solid #3b82f6;
+      outline-offset: 2px;
+    }
+
+  </style>
+</head>
+<body>
+  <main>
+    <label for="dark-toggle" class="toggle-container" aria-label="Toggle dark mode">
+      <input type="checkbox" id="dark-toggle" aria-checked="false" />
+      <span class="toggle-switch" aria-hidden="true"></span>
+    </label>
+  </main>
+
+  <script>
+    const toggle = document.getElementById('dark-toggle');
+    const body = document.body;
+
+    // Load saved preference
+    const savedTheme = localStorage.getItem('theme');
+    if(savedTheme === 'dark') {
+      toggle.checked = true;
+      body.classList.add('dark');
+      toggle.setAttribute('aria-checked', 'true');
+    }
+
+    toggle.addEventListener('change', () => {
+      if (toggle.checked) {
+        body.classList.add('dark');
+        toggle.setAttribute('aria-checked', 'true');
+        localStorage.setItem('theme', 'dark');
+      } else {
+        body.classList.remove('dark');
+        toggle.setAttribute('aria-checked', 'false');
+        localStorage.setItem('theme', 'light');
+      }
+    });
+  </script>
+</body>
+</html>
+
