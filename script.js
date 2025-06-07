@@ -8,41 +8,32 @@ function closeSidebar() {
     document.getElementById('overlay').style.display = 'none';
 }
 
-window.addEventListener('scroll', function() {
-    var notes = document.getElementById('notes');
-    if ((window.innerHeight + window.scrollY) >= document.body.offsetHeight) {
-        notes.style.display = 'block';
-    } else {
-        notes.style.display = 'none';
-    }
-});
-
 document.addEventListener('DOMContentLoaded', function() {
-    const toggle = document.getElementById('dark-toggle');
+    // Dark mode toggle
+    const darkToggle = document.getElementById('dark-toggle');
     const body = document.body;
 
     // Load saved preference
     const savedTheme = localStorage.getItem('theme');
-    if(savedTheme === 'dark') {
-        toggle.checked = true;
+    if (savedTheme === 'dark') {
+        darkToggle.checked = true;
         body.classList.add('dark');
-        toggle.setAttribute('aria-checked', 'true');
+        darkToggle.setAttribute('aria-checked', 'true');
     }
 
-    toggle.addEventListener('change', function() {
-        if (toggle.checked) {
+    darkToggle.addEventListener('change', function() {
+        if (darkToggle.checked) {
             body.classList.add('dark');
-            toggle.setAttribute('aria-checked', 'true');
+            darkToggle.setAttribute('aria-checked', 'true');
             localStorage.setItem('theme', 'dark');
         } else {
             body.classList.remove('dark');
-            toggle.setAttribute('aria-checked', 'false');
+            darkToggle.setAttribute('aria-checked', 'false');
             localStorage.setItem('theme', 'light');
         }
     });
-});
 
-document.addEventListener('DOMContentLoaded', function() {
+    // Sertif modal
     const sertifImgs = document.querySelectorAll('.sertif-img');
     const modal = document.getElementById('sertif-modal');
     const modalTitle = document.getElementById('modal-title');
@@ -51,32 +42,43 @@ document.addEventListener('DOMContentLoaded', function() {
     const closeModal = document.getElementById('close-modal');
     const modalDownload = document.getElementById('modal-download');
 
-    sertifImgs.forEach(img => {
-        img.addEventListener('click', function() {
-            modalTitle.textContent = img.getAttribute('data-title');
-            modalImg.src = img.src;
-            modalDesc.textContent = img.getAttribute('data-desc');
-            modalDownload.href = img.src;
-            modalDownload.setAttribute('download', img.getAttribute('data-title') || 'sertifikat');
-            modal.style.display = 'flex';
+    if (sertifImgs && modal && modalTitle && modalImg && modalDesc && closeModal && modalDownload) {
+        sertifImgs.forEach(img => {
+            img.addEventListener('click', function() {
+                modalTitle.textContent = img.getAttribute('data-title');
+                modalImg.src = img.src;
+                modalDesc.textContent = img.getAttribute('data-desc');
+                modalDownload.href = img.src;
+                modalDownload.setAttribute('download', img.getAttribute('data-title') || 'sertifikat');
+                modal.style.display = 'flex';
+            });
         });
-    });
 
-    closeModal.addEventListener('click', function() {
-        modal.style.display = 'none';
-    });
-
-    window.addEventListener('click', function(e) {
-        if (e.target === modal) {
+        closeModal.addEventListener('click', function() {
             modal.style.display = 'none';
-        }
-    });
-});
+        });
 
-document.addEventListener('DOMContentLoaded', function() {
-    const toggle = document.getElementById('navbar-toggle');
-    const menu = document.querySelector('.navbar-menu');
-    toggle.addEventListener('click', function() {
-        menu.classList.toggle('active');
+        window.addEventListener('click', function(e) {
+            if (e.target === modal) {
+                modal.style.display = 'none';
+            }
+        });
+    }
+
+    // Navbar hamburger toggle & close
+    const navbarToggle = document.getElementById('navbar-toggle');
+    const navbarMenu = document.querySelector('.navbar-menu');
+
+    // Toggle menu
+    navbarToggle.addEventListener('click', function (e) {
+        e.stopPropagation();
+        navbarMenu.classList.add('active');
+    });
+
+    // Klik di luar menu menutup menu
+    document.addEventListener('click', function (e) {
+        if (navbarMenu.classList.contains('active')) {
+            navbarMenu.classList.remove('active');
+        }
     });
 });
