@@ -28,6 +28,29 @@
       text-decoration: none;
     }
 
+    .header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      width: 100%;
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 32px 30px 0 30px;
+      box-sizing: border-box;
+    }
+
+    .header h1 {
+      margin: 0;
+      font-size: 2rem;
+      font-weight: 700;
+      color: #111827;
+      text-align: left;
+    }
+
+    .toggle-container {
+      margin-left: 0;
+    }
+
     /* Container */
     .container {
       max-width: 1200px;
@@ -109,6 +132,57 @@
       outline-offset: 3px;
     }
 
+    /* Dark mode for projects.html */
+    body.dark {
+      background: #121212;
+      color: #e0e0e0;
+    }
+
+    body.dark .header h1,
+    body.dark h2.section-title,
+    body.dark .project-title {
+      color: #4364de;
+    }
+
+    body.dark .container {
+      background: transparent;
+      color: #e0e0e0;
+    }
+
+    body.dark .project-card {
+      background: #23272f;
+      color: #e0e0e0;
+      box-shadow: 0 4px 16px rgba(0,0,0,0.18);
+    }
+
+    body.dark .project-description {
+      color: #cccccc;
+    }
+
+    body.dark .project-card:hover,
+    body.dark .project-card:focus-within {
+      box-shadow: 0 8px 24px rgba(0,0,0,0.28);
+    }
+
+    body.dark .navbar {
+      background: #181a20;
+      box-shadow: 0 2px 12px rgba(0,0,0,0.18);
+    }
+
+    body.dark .navbar-brand {
+      color: #3b82f6;
+    }
+
+    body.dark .navbar-menu li a {
+      color: #ffffff;
+    }
+
+    body.dark .navbar-menu li a:hover,
+    body.dark .navbar-menu li a:focus {
+      color: #e4e7eb;
+      background-color: #23272f00;
+    }
+
     @media (max-width: 480px) {
       .container {
         padding: 3rem 1rem 4rem;
@@ -131,6 +205,13 @@
             </ul>
         </div>
     </nav>
+    <div class="header">
+            <h1>OZVGEN21</h1>
+            <label for="dark-toggle" class="toggle-container" aria-label="Toggle dark mode">
+                <input type="checkbox" id="dark-toggle" aria-checked="false" />
+                <span class="toggle-switch" aria-hidden="true"></span>
+            </label>
+    </div>
   <section aria-labelledby="projects-heading" class="container">
     <h2 id="projects-heading" class="section-title">Projects</h2>
     <div class="projects-grid" role="list">
@@ -164,5 +245,6 @@
     </div>
   </section>
 </body>
+<script src="script.js"></script>
 </html>
 

@@ -41,6 +41,24 @@ body {
 /* =======================
    TOGGLE SWITCH
    ======================= */
+.header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 32px 30px 0 30px;
+  box-sizing: border-box;
+}
+.header h1 {
+  margin: 0;
+  font-size: 2rem;
+  font-weight: 700;
+  color: #111827;
+  text-align: left;
+}
+
 .toggle-container {
   display: flex;
   align-items: center;

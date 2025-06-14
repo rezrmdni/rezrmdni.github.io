@@ -9,29 +9,39 @@ function closeSidebar() {
 }
 
 document.addEventListener('DOMContentLoaded', function() {
-    // Dark mode toggle
     const darkToggle = document.getElementById('dark-toggle');
     const body = document.body;
 
-    // Load saved preference
+    // Cek preferensi dark mode dari localStorage
     const savedTheme = localStorage.getItem('theme');
     if (savedTheme === 'dark') {
-        darkToggle.checked = true;
         body.classList.add('dark');
-        darkToggle.setAttribute('aria-checked', 'true');
+        if (darkToggle) {
+            darkToggle.checked = true;
+            darkToggle.setAttribute('aria-checked', 'true');
+        }
+    } else {
+        body.classList.remove('dark');
+        if (darkToggle) {
+            darkToggle.checked = false;
+            darkToggle.setAttribute('aria-checked', 'false');
+        }
     }
 
-    darkToggle.addEventListener('change', function() {
-        if (darkToggle.checked) {
-            body.classList.add('dark');
-            darkToggle.setAttribute('aria-checked', 'true');
-            localStorage.setItem('theme', 'dark');
-        } else {
-            body.classList.remove('dark');
-            darkToggle.setAttribute('aria-checked', 'false');
-            localStorage.setItem('theme', 'light');
-        }
-    });
+    // Toggle dark mode
+    if (darkToggle) {
+        darkToggle.addEventListener('change', function() {
+            if (darkToggle.checked) {
+                body.classList.add('dark');
+                darkToggle.setAttribute('aria-checked', 'true');
+                localStorage.setItem('theme', 'dark');
+            } else {
+                body.classList.remove('dark');
+                darkToggle.setAttribute('aria-checked', 'false');
+                localStorage.setItem('theme', 'light');
+            }
+        });
+    }
 
     // Sertif modal
     const sertifImgs = document.querySelectorAll('.sertif-img');

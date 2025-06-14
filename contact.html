@@ -134,33 +134,105 @@
         padding-right: 1rem;
       }
     }
+
+    /* Dark mode for contact.html */
+    body.dark {
+      background: #121212;
+      color: #e0e0e0;
+    }
+
+    body.dark .navbar {
+      background: #181a20;
+      box-shadow: 0 2px 12px rgba(0,0,0,0.18);
+    }
+
+    body.dark .navbar-brand {
+      color: #3b82f6;
+    }
+
+    body.dark .navbar-menu li a {
+      color: #ffffff;
+    }
+
+    body.dark .navbar-menu li a:hover,
+    body.dark .navbar-menu li a:focus {
+      color: #e4e7eb;
+      background-color: #23272f00;
+    }
+
+    body.dark .header h1 {
+      color: #4364de;
+    }
+
+    body.dark .toggle-container .toggle-switch {
+      background: #23272f;
+    }
+
+    body.dark main {
+      background: transparent;
+      color: #e0e0e0;
+    }
+
+    body.dark section.contact h2 {
+      color: #4364de;
+    }
+
+    body.dark section.contact p.subtext {
+      color: #cccccc;
+    }
+
+    body.dark .contact-card {
+      background-color: #23272f;
+      color: #e0e0e0;
+      box-shadow: 0 4px 16px rgba(0,0,0,0.18);
+    }
+
+    body.dark .contact-card span {
+      color: #e0e0e0;
+    }
+
+    body.dark .contact-card:hover,
+    body.dark .contact-card:focus-visible {
+      box-shadow: 0 8px 24px rgba(0,0,0,0.28);
+      background-color: #181a20;
+    }
   </style>
 </head>
 <body>
-    <nav class="navbar">
+   <nav class="navbar">
         <div class="navbar-container">
             <div class="navbar-brand">IMYOURNOIRX</div>
+            <button class="navbar-toggle" id="navbar-toggle" aria-label="Toggle navigation">
+                <i class="fa-solid fa-bars"></i>
+            </button>
             <ul class="navbar-menu">
                 <li><a href="index.html">Profile</a></li>
                 <li><a href="projects.html">Project</a></li>
                 <li><a href="#sertificate">Sertificate</a></li>
-                <li><a href="#contact">Contact</a></li>
+                <li><a href="contact.html">Contact</a></li>
             </ul>
         </div>
     </nav>
+    <div class="header">
+            <h1>OZVGEN21</h1>
+            <label for="dark-toggle" class="toggle-container" aria-label="Toggle dark mode">
+                <input type="checkbox" id="dark-toggle" aria-checked="false" />
+                <span class="toggle-switch" aria-hidden="true"></span>
+            </label>
+    </div>
   <main>
     <section class="contact" aria-label="Contact Information">
       <h2>Get in Touch</h2>
       <p class="subtext">Feel free to reach out via any of the following platforms. I'm always happy to connect and collaborate!</p>
       <div class="contacts-list">
-        <a href="https://github.com/rezrmdnii" class="contact-card" target="_blank" rel="noopener noreferrer" aria-label="Visit my GitHub profile">
+        <a href="https://github.com/rezrmdni" class="contact-card" target="_blank" rel="noopener noreferrer" aria-label="Visit my GitHub profile">
           <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false" >
             <path d="M12 0.297c-6.6 0-12 5.4-12 12 0 5.303 3.438 9.8 8.205 11.387.6.113.82-.263.82-.583 0-.288-.01-1.05-.015-2.06-3.338.724-4.042-1.613-4.042-1.613-.546-1.39-1.333-1.76-1.333-1.76-1.09-.744.082-.729.082-.729 1.204.084 1.837 1.234 1.837 1.234 1.07 1.83 2.807 1.3 3.492.996.108-.775.42-1.3.763-1.6-2.665-.3-5.466-1.335-5.466-5.932 0-1.312.47-2.38 1.236-3.22-.123-.303-.536-1.522.117-3.176 0 0 1.008-.322 3.3 1.23a11.5 11.5 0 013-.404c1.02.004 2.046.138 3 .404 2.292-1.553 3.297-1.23 3.297-1.23.655 1.654.243 2.873.12 3.176.77.84 1.234 1.908 1.234 3.22 0 4.61-2.804 5.628-5.476 5.927.432.373.81 1.104.81 2.228 0 1.61-.015 2.91-.015 3.303 0 .323.216.698.825.58A12.003 12.003 0 0024 12.297c0-6.6-5.4-12-12-12" />
           </svg>
           <span>GitHub</span>
         </a>
 
-        <a href="https://linkedin.com/in/rezrmdni" class="contact-card" target="_blank" rel="noopener noreferrer" aria-label="Visit my LinkedIn profile">
+        <a href="https://linkedin.com/in/rezrmdnii" class="contact-card" target="_blank" rel="noopener noreferrer" aria-label="Visit my LinkedIn profile">
           <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false">
             <path d="M4.98 3.5C4.98 4.88 3.87 6 2.5 6S0 4.88 0 3.5 1.11 1 2.5 1 4.98 2.12 4.98 3.5zM.15 8.76h4.7V24H.15V8.76zm7.75 0h4.5v2.16h.06c.62-1.16 2.12-2.39 4.36-2.39 4.67 0 5.53 3.06 5.53 7.04V24h-4.7v-6.77c0-1.62-.03-3.7-2.26-3.7-2.26 0-2.6 1.76-2.6 3.57V24H7.9V8.76z"/>
           </svg>
@@ -174,7 +246,7 @@
           <span>Email</span>
         </a>
 
-        <a href="https://instagram.com/ozvgen21" class="contact-card" target="_blank" rel="noopener noreferrer" aria-label="Visit my Instagram profile">
+        <a href="https://instagram.com/imyournoirx_" class="contact-card" target="_blank" rel="noopener noreferrer" aria-label="Visit my Instagram profile">
           <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false" stroke="currentColor" fill="none" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
             <rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect>
             <path d="M16 11.37a4 4 0 1 1-4.94-4.94 4 4 0 0 1 4.94 4.94z"></path>
